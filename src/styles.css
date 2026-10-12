@@ -1157,3 +1157,24 @@ body::before {
 
 /* Larger type */
 html { font-size: 112.5%; }
+
+/* Reel carousel controls */
+.reels-carousel { grid-auto-columns: minmax(300px, 30vw); gap: 28px; padding: 18px 2px 22px; cursor: grab; scroll-padding-left: 2px; }
+.reels-carousel.is-dragging { cursor: grabbing; scroll-snap-type: none; scroll-behavior: auto; }
+.reels-carousel.is-dragging .reel-card__link { pointer-events: none; }
+.reel-card { opacity: 0.45; transform: scale(0.94); transition: opacity 0.6s cubic-bezier(.2,.7,.2,1), transform 0.6s cubic-bezier(.2,.7,.2,1), border-color 0.4s, box-shadow 0.6s; }
+.reel-card.is-active { opacity: 1; transform: scale(1); border-color: rgba(217,191,143,0.7); box-shadow: 0 30px 60px -25px rgba(0,0,0,0.9), 0 0 40px -12px rgba(217,191,143,0.35); }
+.reels-carousel-shell::after { display: none; }
+.reel-controls { display: flex; align-items: center; gap: 28px; margin-top: 18px; }
+.reel-controls__count { font-size: 0.8rem; letter-spacing: 0.25em; color: rgba(244,236,225,0.55); white-space: nowrap; }
+.reel-controls__count b { color: var(--gold); font-weight: 400; font-size: 1.4rem; margin-right: 6px; }
+.reel-controls__track { flex: 1; height: 1px; background: rgba(217,191,143,0.22); position: relative; }
+.reel-controls__track i { position: absolute; left: 0; top: -1px; height: 3px; background: linear-gradient(90deg, rgba(217,191,143,0.4), var(--gold)); border-radius: 3px; transition: width 0.5s cubic-bezier(.2,.7,.2,1); box-shadow: 0 0 12px rgba(217,191,143,0.6); }
+.reel-controls__dots { display: flex; gap: 10px; }
+.reel-controls__dots button { width: 8px; height: 8px; padding: 0; border-radius: 999px; border: 1px solid rgba(217,191,143,0.6); background: transparent; cursor: pointer; transition: width 0.4s cubic-bezier(.2,.7,.2,1), background 0.3s; }
+.reel-controls__dots button.is-active { width: 28px; background: var(--gold); }
+.reel-controls__arrows { display: flex; gap: 10px; }
+.reel-controls__arrows button { width: 46px; height: 46px; border-radius: 999px; border: 1px solid rgba(217,191,143,0.5); background: rgba(217,191,143,0.05); color: var(--gold); font-size: 1.1rem; cursor: pointer; transition: background 0.3s, transform 0.3s, opacity 0.3s; }
+.reel-controls__arrows button:hover:not(:disabled) { background: var(--gold); color: #0b0807; transform: translateY(-2px); }
+.reel-controls__arrows button:disabled { opacity: 0.3; cursor: default; }
+@media (max-width: 700px) { .reels-carousel { grid-auto-columns: 78vw; } .reel-controls { gap: 14px; flex-wrap: wrap; } .reel-controls__track { order: 5; flex-basis: 100%; } }

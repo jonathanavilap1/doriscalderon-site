@@ -72,46 +72,108 @@ const renderReelsCarousel = () => {
     .join('');
 };
 
-let carouselAutoScrollId = null;
+const shell = document.querySelector('.reels-carousel-shell');
+let reelCards = [];
+let activeReel = 0;
 
-const scrollReelsCarousel = (direction) => {
-  if (!reelsCarousel) return;
+const pad = (n) => String(n).padStart(2, '0');
 
-  const scrollAmount = Math.round(reelsCarousel.clientWidth * 0.8);
-  reelsCarousel.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+const buildReelControls = () => {
+  if (!shell || !reelsCarousel) return;
+  reelCards = [...reelsCarousel.querySelectorAll('.reel-card')];
+
+  const controls = document.createElement('div');
+  controls.className = 'reel-controls';
+  controls.innerHTML = `
+    <div class="reel-controls__count"><b data-current>01</b><span>/ ${pad(reelCards.length)}</span></div>
+    <div class="reel-controls__track"><i data-progress></i></div>
+    <div class="reel-controls__dots">
+      ${reelCards.map((_, i) => `<button type="button" aria-label="Go to reel ${i + 1}" data-dot="${i}"></button>`).join('')}
+    </div>
+    <div class="reel-controls__arrows">
+      <button type="button" aria-label="Previous reel" data-dir="-1">&larr;</button>
+      <button type="button" aria-label="Next reel" data-dir="1">&rarr;</button>
+    </div>`;
+  shell.after(controls);
+
+  controls.addEventListener('click', (e) => {
+    const btn = e.target.closest('button');
+    if (!btn) return;
+    if (btn.dataset.dot) goToReel(Number(btn.dataset.dot));
+    if (btn.dataset.dir) goToReel(activeReel + Number(btn.dataset.dir));
+  });
 };
 
-const startCarouselAutoScroll = () => {
-  if (!reelsCarousel || carouselAutoScrollId) return;
-
-  carouselAutoScrollId = window.setInterval(() => {
-    const maxScrollLeft = reelsCarousel.scrollWidth - reelsCarousel.clientWidth - 4;
-    const atEnd = reelsCarousel.scrollLeft >= maxScrollLeft;
-
-    if (atEnd) {
-      reelsCarousel.scrollTo({ left: 0, behavior: 'smooth' });
-      return;
-    }
-
-    scrollReelsCarousel(1);
-  }, 2600);
+const goToReel = (index) => {
+  const i = Math.max(0, Math.min(reelCards.length - 1, index));
+  const card = reelCards[i];
+  if (!card) return;
+  reelsCarousel.scrollTo({ left: card.offsetLeft - reelsCarousel.offsetLeft - 2, behavior: 'smooth' });
 };
 
-const stopCarouselAutoScroll = () => {
-  if (!carouselAutoScrollId) return;
+const updateReelState = () => {
+  if (!reelCards.length) return;
+  const max = reelsCarousel.scrollWidth - reelsCarousel.clientWidth;
+  const ratio = max > 0 ? reelsCarousel.scrollLeft / max : 0;
+  const nearest = reelCards.reduce(
+    (best, card, i) => {
+      const d = Math.abs(card.offsetLeft - reelsCarousel.offsetLeft - 2 - reelsCarousel.scrollLeft);
+      return d < best.d ? { i, d } : best;
+    },
+    { i: 0, d: Infinity }
+  ).i;
+  activeReel = ratio > 0.98 ? reelCards.length - 1 : nearest;
 
-  window.clearInterval(carouselAutoScrollId);
-  carouselAutoScrollId = null;
+  reelCards.forEach((c, i) => c.classList.toggle('is-active', i === activeReel));
+  const controls = document.querySelector('.reel-controls');
+  if (!controls) return;
+  controls.querySelector('[data-current]').textContent = pad(activeReel + 1);
+  controls.querySelector('[data-progress]').style.width = `${Math.max(8, ratio * 100)}%`;
+  controls.querySelectorAll('[data-dot]').forEach((d, i) => d.classList.toggle('is-active', i === activeReel));
+  controls.querySelector('[data-dir="-1"]').disabled = activeReel === 0;
+  controls.querySelector('[data-dir="1"]').disabled = activeReel === reelCards.length - 1;
 };
 
-reelsCarousel?.addEventListener('mouseenter', stopCarouselAutoScroll);
-reelsCarousel?.addEventListener('mouseleave', startCarouselAutoScroll);
-reelsCarousel?.addEventListener('focusin', stopCarouselAutoScroll);
-reelsCarousel?.addEventListener('focusout', startCarouselAutoScroll);
+// Mouse drag to scroll
+let dragStartX = 0;
+let dragStartLeft = 0;
+let dragging = false;
+let dragMoved = false;
+
+reelsCarousel?.addEventListener('pointerdown', (e) => {
+  if (e.pointerType !== 'mouse') return;
+  dragging = true;
+  dragMoved = false;
+  dragStartX = e.clientX;
+  dragStartLeft = reelsCarousel.scrollLeft;
+});
+window.addEventListener('pointermove', (e) => {
+  if (!dragging) return;
+  const dx = e.clientX - dragStartX;
+  if (Math.abs(dx) > 5 && !dragMoved) {
+    dragMoved = true;
+    reelsCarousel.classList.add('is-dragging');
+  }
+  if (dragMoved) reelsCarousel.scrollLeft = dragStartLeft - dx;
+});
+window.addEventListener('pointerup', () => {
+  if (!dragging) return;
+  dragging = false;
+  reelsCarousel.classList.remove('is-dragging');
+  if (dragMoved) goToReel(activeReel);
+});
+reelsCarousel?.addEventListener('click', (e) => {
+  if (dragMoved) {
+    e.preventDefault();
+    dragMoved = false;
+  }
+}, true);
+reelsCarousel?.addEventListener('dragstart', (e) => e.preventDefault());
+reelsCarousel?.addEventListener('scroll', updateReelState, { passive: true });
 
 renderReelsCarousel();
-startCarouselAutoScroll();
-
+buildReelControls();
+updateReelState();
 const revealTargets = document.querySelectorAll(
   '.services__header, .dark-panel__intro, .dark-panel__item, .red-panel__content, .contact__col, .footer, .brands, .gallery'
 );
