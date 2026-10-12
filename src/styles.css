@@ -1241,3 +1241,9 @@ h1, h2, h3, .services__header h2, .contact__col h3, .dark-panel__intro h2, .red-
 .brand--a, .brand--c, .brand--e { font-family: inherit; font-style: normal; letter-spacing: 0.16em; font-weight: 600; }
 .brand--a, .brand--c, .brand--e, .brand--b, .brand--d, .brand--f { text-transform: uppercase; font-size: 1rem; }
 .dark-panel__intro h2 { font-weight: 600; }
+
+/* Larger photos */
+.reels-carousel { grid-auto-columns: minmax(340px, 52vw); gap: 24px; }
+.reel-card__media { aspect-ratio: 4 / 5; }
+.gallery { grid-auto-rows: clamp(260px, 34vw, 480px); }
+@media (max-width: 700px) { .reels-carousel { grid-auto-columns: 86vw; } }
