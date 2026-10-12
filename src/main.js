@@ -84,23 +84,15 @@ const buildReelControls = () => {
 
   const controls = document.createElement('div');
   controls.className = 'reel-controls';
-  controls.innerHTML = `
-    <div class="reel-controls__count"><b data-current>01</b><span>/ ${pad(reelCards.length)}</span></div>
-    <div class="reel-controls__track"><i data-progress></i></div>
-    <div class="reel-controls__dots">
-      ${reelCards.map((_, i) => `<button type="button" aria-label="Go to reel ${i + 1}" data-dot="${i}"></button>`).join('')}
-    </div>
-    <div class="reel-controls__arrows">
-      <button type="button" aria-label="Previous reel" data-dir="-1">&larr;</button>
-      <button type="button" aria-label="Next reel" data-dir="1">&rarr;</button>
-    </div>`;
+  controls.innerHTML = reelCards
+    .map((_, i) => `<button type="button" aria-label="Go to reel ${i + 1}" data-dot="${i}"></button>`)
+    .join('');
   shell.after(controls);
 
   controls.addEventListener('click', (e) => {
     const btn = e.target.closest('button');
     if (!btn) return;
     if (btn.dataset.dot) goToReel(Number(btn.dataset.dot));
-    if (btn.dataset.dir) goToReel(activeReel + Number(btn.dataset.dir));
   });
 };
 
@@ -127,11 +119,7 @@ const updateReelState = () => {
   reelCards.forEach((c, i) => c.classList.toggle('is-active', i === activeReel));
   const controls = document.querySelector('.reel-controls');
   if (!controls) return;
-  controls.querySelector('[data-current]').textContent = pad(activeReel + 1);
-  controls.querySelector('[data-progress]').style.width = `${Math.max(8, ratio * 100)}%`;
   controls.querySelectorAll('[data-dot]').forEach((d, i) => d.classList.toggle('is-active', i === activeReel));
-  controls.querySelector('[data-dir="-1"]').disabled = activeReel === 0;
-  controls.querySelector('[data-dir="1"]').disabled = activeReel === reelCards.length - 1;
 };
 
 // Mouse drag to scroll
@@ -174,6 +162,22 @@ reelsCarousel?.addEventListener('scroll', updateReelState, { passive: true });
 renderReelsCarousel();
 buildReelControls();
 updateReelState();
+
+// Gentle autoplay hints that the row can be moved; pauses while the user interacts
+let autoplayId = null;
+const startReelAutoplay = () => {
+  if (autoplayId) return;
+  autoplayId = window.setInterval(() => {
+    goToReel(activeReel >= reelCards.length - 1 ? 0 : activeReel + 1);
+  }, 3200);
+};
+const stopReelAutoplay = () => {
+  window.clearInterval(autoplayId);
+  autoplayId = null;
+};
+['mouseenter', 'pointerdown', 'touchstart', 'focusin'].forEach((ev) => reelsCarousel?.addEventListener(ev, stopReelAutoplay, { passive: true }));
+['mouseleave', 'focusout'].forEach((ev) => reelsCarousel?.addEventListener(ev, startReelAutoplay));
+startReelAutoplay();
 const revealTargets = document.querySelectorAll(
   '.services__header, .dark-panel__intro, .dark-panel__item, .red-panel__content, .contact__col, .footer, .brands, .gallery'
 );
