@@ -1121,7 +1121,12 @@ body::before {
 }
 
 .brands {
-  padding: 110px 0 100px;
+  padding: 56px 0 24px;
+}
+
+.brands__row {
+  margin-top: 28px;
+  padding: 30px 0;
 }
 
 .contact {
