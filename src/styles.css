@@ -125,6 +125,7 @@ video {
   justify-self: end;
   padding: 12px 22px;
   border: 1px solid var(--red);
+  border-radius: 999px;
   background: var(--red);
   color: #fff;
   font-size: 0.78rem;
@@ -227,7 +228,7 @@ main {
   min-height: 40px;
   padding: 0 18px;
   border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 0;
+  border-radius: 999px;
   font-size: 0.68rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -502,7 +503,7 @@ main {
   min-height: 36px;
   padding: 0 12px;
   border: 1px solid rgba(255,255,255,0.26);
-  border-radius: 0;
+  border-radius: 999px;
   font-size: 0.68rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
