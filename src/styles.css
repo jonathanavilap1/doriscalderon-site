@@ -1154,3 +1154,6 @@ body::before {
   .contact { gap: 64px; }
   .contact::before { display: none; }
 }
+
+/* Larger type */
+html { font-size: 112.5%; }
