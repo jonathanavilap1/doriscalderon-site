@@ -113,7 +113,7 @@ renderReelsCarousel();
 startCarouselAutoScroll();
 
 const revealTargets = document.querySelectorAll(
-  '.services__header, .dark-panel__intro, .dark-panel__item, .red-panel__content, .contact__col, .footer'
+  '.services__header, .dark-panel__intro, .dark-panel__item, .red-panel__content, .contact__col, .footer, .brands, .gallery'
 );
 revealTargets.forEach((el) => el.classList.add('reveal'));
 const revealObserver = new IntersectionObserver(
