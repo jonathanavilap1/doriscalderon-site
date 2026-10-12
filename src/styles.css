@@ -1170,3 +1170,74 @@ html { font-size: 112.5%; }
 .reel-controls button::after { content: ""; position: absolute; inset: -12px -2px; }
 .reel-controls button.is-active { width: 44px; background: var(--gold); }
 @media (max-width: 700px) { .reels-carousel { grid-auto-columns: 78vw; } }
+/* Modern edit: cleaner, cooler, less ornamental */
+:root {
+  --bg-soft: #070707;
+  --bg-dark: #070707;
+  --text: #f6f5f3;
+  --text-soft: #b9b7b3;
+  --line: rgba(255, 255, 255, 0.12);
+  --line-light: rgba(255, 255, 255, 0.1);
+  --white: #f6f5f3;
+  --gold: #f1ece4;
+  --red: #14090c;
+}
+body, .hero, .dark-panel, .services, .contact, .brands, .footer { background-color: #070707; }
+body::before { display: none; }
+.hero__content::before, .services__header h2::after, .contact__col h3::after,
+.dark-panel__intro h2::after, .red-panel__content h2::after, .contact::before { display: none; }
+
+h1, h2, h3, .services__header h2, .contact__col h3, .dark-panel__intro h2, .red-panel__content h2 {
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1;
+  background: none;
+  -webkit-text-fill-color: currentColor;
+  color: #fff;
+}
+.microcopy, .dark-panel__intro .microcopy, .red-panel .microcopy {
+  letter-spacing: 0.18em;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.55);
+}
+.topbar__brand, .topbar__wordmark { letter-spacing: 0.22em; }
+.topbar__nav a { letter-spacing: 0.1em; color: rgba(255, 255, 255, 0.72); }
+
+.topbar__cta, .button, .button--primary {
+  background: #fff;
+  color: #070707;
+  border-color: #fff;
+  letter-spacing: 0.06em;
+  font-weight: 500;
+  box-shadow: none;
+}
+.topbar__cta:hover, .button:hover, .button--primary:hover { background: #e9e6e0; box-shadow: 0 10px 40px -10px rgba(255, 255, 255, 0.35); }
+.button--secondary, .button--ghost { background: transparent; color: #fff; border-color: rgba(255, 255, 255, 0.35); }
+
+.dark-panel__item, .reel-card, .gallery__item {
+  border-color: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.03);
+}
+.reel-card__media, .reel-card__preview, .gallery__item img { border-radius: 20px; }
+.dark-panel__grid { border-top-color: rgba(255, 255, 255, 0.1); }
+.reel-controls button { background: rgba(255, 255, 255, 0.2); }
+.reel-controls button.is-active { background: #fff; }
+
+.red-panel {
+  background: radial-gradient(ellipse at 20% 0%, #3a1119 0%, #14090c 60%), #14090c;
+  color: #fff;
+}
+.red-panel__tags span { border-color: rgba(255, 255, 255, 0.25); color: #fff; background: rgba(255, 255, 255, 0.04); }
+
+.brands__row { border-color: rgba(255, 255, 255, 0.1); }
+.brands__row [class*="brand--"], .brand { letter-spacing: 0.16em; font-weight: 600; color: rgba(255, 255, 255, 0.55); }
+.footer { border-top: 1px solid rgba(255, 255, 255, 0.08); color: rgba(255, 255, 255, 0.5); }
+.contact__col + .contact__col { border-left-color: rgba(255, 255, 255, 0.1); }
+
+.hero h1 { background: none; -webkit-text-fill-color: #fff; color: #fff; font-weight: 600; letter-spacing: -0.045em; line-height: 0.98; }
+
+.topbar { border-bottom-color: rgba(255,255,255,0.1); }
+.brand--a, .brand--c, .brand--e { font-family: inherit; font-style: normal; letter-spacing: 0.16em; font-weight: 600; }
+.brand--a, .brand--c, .brand--e, .brand--b, .brand--d, .brand--f { text-transform: uppercase; font-size: 1rem; }
+.dark-panel__intro h2 { font-weight: 600; }
