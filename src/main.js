@@ -111,3 +111,20 @@ reelsCarousel?.addEventListener('focusout', startCarouselAutoScroll);
 
 renderReelsCarousel();
 startCarouselAutoScroll();
+
+const revealTargets = document.querySelectorAll(
+  '.services__header, .dark-panel__intro, .dark-panel__item, .red-panel__content, .contact__col, .footer'
+);
+revealTargets.forEach((el) => el.classList.add('reveal'));
+const revealObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  },
+  { threshold: 0.12 }
+);
+revealTargets.forEach((el) => revealObserver.observe(el));
