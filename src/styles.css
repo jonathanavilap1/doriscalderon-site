@@ -12,8 +12,8 @@
   --white: #f4ece1;
   --red: #5e1a26;
   --gold: #d9bf8f;
-  --serif: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
-  --sans: 'Jost', 'Helvetica Neue', Arial, sans-serif;
+  --serif: 'Helvetica Neue', Arial, sans-serif;
+  --sans: 'Helvetica Neue', Arial, sans-serif;
   --blue-soft: #dfe9ff;
   --shadow: rgba(0, 0, 0, 0.12);
   --container: 1240px;
@@ -34,7 +34,7 @@ body {
   background: var(--bg-soft);
   color: var(--text);
   font-family: var(--sans);
-  font-weight: 300;
+  font-weight: 400;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
@@ -657,10 +657,10 @@ main {
 /* Luxury refinement layer */
 .brand-mark {
   font-family: var(--serif);
-  font-size: 1.25rem;
-  font-weight: 500;
-  font-style: italic;
-  letter-spacing: 0.2em;
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-style: normal;
+  letter-spacing: 0.32em;
   text-transform: uppercase;
 }
 
@@ -706,21 +706,21 @@ main {
 .red-panel__content h2,
 .contact__col h3 {
   font-family: var(--serif);
-  font-weight: 400;
-  letter-spacing: -0.005em;
-  line-height: 1.02;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
 }
 
 .hero h1 {
-  font-size: clamp(2.6rem, 5.2vw, 5.6rem);
-  max-width: 980px;
+  font-size: clamp(2.6rem, 5.6vw, 6.2rem);
+  max-width: 900px;
 }
 
 .dark-panel__item strong {
   font-family: var(--serif);
-  font-size: 1.7rem;
+  font-size: 1.4rem;
   font-weight: 500;
-  letter-spacing: 0;
+  letter-spacing: -0.02em;
 }
 
 .hero__lead,
@@ -728,8 +728,8 @@ main {
 .dark-panel__item p,
 .contact__col p,
 .red-panel__content p {
-  font-weight: 300;
-  line-height: 1.9;
+  font-weight: 400;
+  line-height: 1.8;
 }
 
 .hero__overlay {
