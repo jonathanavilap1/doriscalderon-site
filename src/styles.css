@@ -1285,3 +1285,20 @@ h1, h2, h3, .services__header h2, .contact__col h3, .dark-panel__intro h2, .red-
 
 /* Nav on the right, apart from the wordmark */
 .topbar__nav { justify-self: end; }
+
+/* Button hover: invert so text always stays readable */
+.button, .contact__actions a { transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease; }
+.button--primary:hover, .contact__actions a.button--primary:hover {
+  background: transparent;
+  color: #fff;
+  border-color: #fff;
+  box-shadow: none;
+  transform: translateY(-2px);
+}
+.button--secondary:hover, .contact__actions a.button--secondary:hover {
+  background: #fff;
+  color: #070707;
+  border-color: #fff;
+  box-shadow: none;
+  transform: translateY(-2px);
+}
