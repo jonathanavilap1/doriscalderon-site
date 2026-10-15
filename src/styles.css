@@ -1305,7 +1305,7 @@ h1, h2, h3, .services__header h2, .contact__col h3, .dark-panel__intro h2, .red-
 
 /* Brands: crocodile texture only behind the names, no dark filter */
 .brands__row {
-  background: url('./assets/leather.jpg') center 45% / cover no-repeat;
+  background: url('./assets/leather2.jpg') center 45% / cover no-repeat;
   border-color: transparent;
   -webkit-mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent), linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
   -webkit-mask-composite: source-in;
