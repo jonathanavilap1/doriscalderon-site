@@ -1282,3 +1282,6 @@ h1, h2, h3, .services__header h2, .contact__col h3, .dark-panel__intro h2, .red-
 /* Nav sits next to the wordmark */
 .topbar { grid-template-columns: auto 1fr; gap: clamp(32px, 5vw, 80px); }
 .topbar__nav { justify-self: start; }
+
+/* Nav on the right, apart from the wordmark */
+.topbar__nav { justify-self: end; }
