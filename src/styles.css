@@ -1247,3 +1247,23 @@ h1, h2, h3, .services__header h2, .contact__col h3, .dark-panel__intro h2, .red-
 .reel-card__media { aspect-ratio: 4 / 5; }
 .gallery { grid-auto-rows: clamp(260px, 34vw, 480px); }
 @media (max-width: 700px) { .reels-carousel { grid-auto-columns: 86vw; } }
+
+/* Readability: bigger supporting text (headings unchanged) */
+.hero__lead { font-size: 1.3rem; line-height: 1.6; }
+.dark-panel__item p, .dark-panel__intro p, .contact__col p, .red-panel__content p { font-size: 1.2rem; line-height: 1.65; }
+.dark-panel__item h3 { font-size: 1.7rem; }
+.brand-mark { font-size: 1.05rem; }
+.topbar__nav { font-size: 0.95rem; }
+.topbar__nav a { font-size: 0.95rem; }
+.topbar__cta { font-size: 0.9rem; padding-inline: 26px; }
+.button { font-size: 0.85rem; }
+.microcopy, .dark-panel__intro .microcopy, .red-panel .microcopy, .eyebrow { font-size: 0.85rem; }
+.dark-panel__item span, .contact__index, .red-panel__aside { font-size: 0.9rem; }
+.red-panel__tags span { font-size: 0.85rem; }
+.brands__label { font-size: 0.85rem; }
+.footer__copy { font-size: 0.85rem; }
+.footer__links, .footer__links a, .footer__tag { font-size: 0.9rem; }
+.footer__name { font-size: 1rem; }
+@media (max-width: 700px) {
+  .hero__lead, .dark-panel__item p, .dark-panel__intro p, .contact__col p, .red-panel__content p { font-size: 1.1rem; }
+}
