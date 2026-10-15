@@ -1302,3 +1302,14 @@ h1, h2, h3, .services__header h2, .contact__col h3, .dark-panel__intro h2, .red-
   box-shadow: none;
   transform: translateY(-2px);
 }
+
+/* Brands: crocodile texture only behind the names, no dark filter */
+.brands__row {
+  background: url('./assets/croc.png') center 40% / 460px auto repeat;
+  border-color: rgba(255,255,255,0.25);
+}
+.brands__row [class*="brand--"], .brand {
+  color: #fff;
+  font-weight: 700;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.45);
+}
