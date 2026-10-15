@@ -1278,3 +1278,7 @@ h1, h2, h3, .services__header h2, .contact__col h3, .dark-panel__intro h2, .red-
 .hero__lead { font-size: 1.6rem; line-height: 1.55; max-width: 44ch; }
 .dark-panel__item p, .dark-panel__intro p, .contact__col p, .red-panel__content p { font-size: 1.35rem; }
 @media (max-width: 700px) { .hero__lead { font-size: 1.3rem; } .dark-panel__item p, .dark-panel__intro p, .contact__col p, .red-panel__content p { font-size: 1.2rem; } }
+
+/* Nav sits next to the wordmark */
+.topbar { grid-template-columns: auto 1fr; gap: clamp(32px, 5vw, 80px); }
+.topbar__nav { justify-self: start; }
