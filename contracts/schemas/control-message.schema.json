@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "control-message.schema.json",
+  "title": "ControlMessage",
+  "description": "Server-originated events published to `{club_id}/{class_id}/_control/events`. Athletes may subscribe only to this topic; the TV subscribes to `{club_id}/{class_id}/#`.",
+  "oneOf": [
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["v", "type", "data"],
+      "properties": {
+        "v": { "const": 1 },
+        "type": { "const": "roster.changed" },
+        "data": {
+          "description": "PII-free signal: the roster changed for this athlete. Consumers re-fetch names over authenticated REST; names never travel over IoT Core.",
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["athlete_id"],
+          "properties": { "athlete_id": { "type": "string", "format": "uuid" } }
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["v", "type", "data"],
+      "properties": {
+        "v": { "const": 1 },
+        "type": { "const": "class.state" },
+        "data": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status"],
+          "properties": { "status": { "enum": ["scheduled", "live", "completed"] } }
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["v", "type", "data"],
+      "properties": {
+        "v": { "const": 1 },
+        "type": { "const": "class.results" },
+        "data": { "$ref": "class-results.schema.json" }
+      }
+    }
+  ]
+}

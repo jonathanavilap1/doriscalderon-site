@@ -1,0 +1,18 @@
+{
+  "v": 1,
+  "class_id": "5b1f3c8e-7a2d-4c61-9b0e-0f6a2d1c4e77",
+  "club_id": "iron-house",
+  "workout_type": "hyrox",
+  "status": "live",
+  "title": "Saturday Engine 6AM",
+  "starts_at": "2026-11-14T12:00:00Z",
+  "ended_at": null,
+  "branding": {
+    "club_name": "Iron House",
+    "logo_url": "https://cdn.example.com/iron-house/logo.png",
+    "accent_color": "#FF6B00",
+    "secondary_color": "#111111"
+  },
+  "join": { "pin": "4821", "pin_expires_at": "2026-11-14T12:15:00Z" },
+  "realtime": { "iot_endpoint": "abc123-ats.iot.us-east-1.amazonaws.com", "authorizer": "lmclub-authorizer" }
+}

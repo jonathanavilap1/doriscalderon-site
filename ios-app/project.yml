@@ -1,0 +1,62 @@
+# XcodeGen spec (https://github.com/yonaskolb/XcodeGen): `brew install xcodegen && xcodegen generate`.
+# Not generated or built in CI yet; the SPM layers (Package.swift) are what is verified. Fill in team/bundle ids.
+name: LMClub
+options:
+  bundleIdPrefix: club.lm
+  deploymentTarget: { iOS: "17.0", watchOS: "10.0" }
+packages:
+  LMClubKit: { path: . }
+targets:
+  LMClub:
+    type: application
+    platform: iOS
+    sources: [Apps/LMClubiOS]
+    dependencies:
+      - package: LMClubKit
+        product: LMClubDomain
+      - package: LMClubKit
+        product: LMClubData
+      - package: LMClubKit
+        product: LMClubPresentation
+      - target: LMClubWatch
+    info:
+      path: Apps/LMClubiOS/Info.plist
+      properties:
+        LMClubAPIBaseURL: https://REPLACE_ME.execute-api.us-east-1.amazonaws.com
+        # Keeps the BLE strap connection alive with the phone locked (GATT Heart Rate 0x180D).
+        UIBackgroundModes: [bluetooth-central]
+        NSBluetoothAlwaysUsageDescription: LM Club connects to your heart rate strap to show your effort on the class screen.
+        NSHealthShareUsageDescription: LM Club reads your heart rate during class. Your health data is never sold or shared with third parties.
+        NSHealthUpdateUsageDescription: LM Club saves your class workouts to Apple Health.
+        UILaunchScreen: {}
+    entitlements:
+      path: Apps/LMClubiOS/LMClub.entitlements
+      properties:
+        com.apple.developer.healthkit: true
+        com.apple.developer.applesignin: [Default]
+  LMClubWatch:
+    type: application
+    platform: watchOS
+    sources: [Apps/LMClubWatch]
+    dependencies:
+      - package: LMClubKit
+        product: LMClubDomain
+      - package: LMClubKit
+        product: LMClubData
+      - package: LMClubKit
+        product: LMClubPresentation
+      - package: LMClubKit
+        product: LMClubWorkout
+    info:
+      path: Apps/LMClubWatch/Info.plist
+      properties:
+        WKApplication: true
+        WKCompanionAppBundleIdentifier: club.lm.LMClub
+        # A running HKWorkoutSession keeps the app executing with the wrist down.
+        WKBackgroundModes: [workout-processing]
+        NSHealthShareUsageDescription: LM Club reads your heart rate during class. Your health data is never sold or shared with third parties.
+        NSHealthUpdateUsageDescription: LM Club saves your class workouts to Apple Health.
+    entitlements:
+      path: Apps/LMClubWatch/LMClubWatch.entitlements
+      properties:
+        com.apple.developer.healthkit: true

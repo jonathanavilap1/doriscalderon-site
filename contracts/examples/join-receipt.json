@@ -1,0 +1,34 @@
+{
+  "v": 1,
+  "identity": {
+    "v": 1,
+    "athlete_id": "0d5c9e1a-3f4b-4d8a-8a52-6c1f7b9e2a10",
+    "class_id": "5b1f3c8e-7a2d-4c61-9b0e-0f6a2d1c4e77",
+    "auth_state": "guest",
+    "auth_provider": null,
+    "display_name": "xX_mike_Xx",
+    "display_name_override": null,
+    "override_by": null,
+    "override_at": null,
+    "joined_at": "2026-11-14T12:01:00Z"
+  },
+  "session": {
+    "v": 1,
+    "class_id": "5b1f3c8e-7a2d-4c61-9b0e-0f6a2d1c4e77",
+    "club_id": "iron-house",
+    "workout_type": "hyrox",
+    "status": "live",
+    "title": "Saturday Engine 6AM",
+    "starts_at": "2026-11-14T12:00:00Z",
+    "ended_at": null,
+    "branding": { "club_name": "Iron House", "logo_url": "https://cdn.example.com/iron-house/logo.png", "accent_color": "#FF6B00" },
+    "join": null,
+    "realtime": { "iot_endpoint": "abc123-ats.iot.us-east-1.amazonaws.com", "authorizer": "lmclub-authorizer" }
+  },
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.e30.signature",
+  "token_expires_at": "2026-11-14T15:01:00Z",
+  "topics": {
+    "publish": "iron-house/5b1f3c8e-7a2d-4c61-9b0e-0f6a2d1c4e77/0d5c9e1a-3f4b-4d8a-8a52-6c1f7b9e2a10",
+    "control": "iron-house/5b1f3c8e-7a2d-4c61-9b0e-0f6a2d1c4e77/_control/events"
+  }
+}

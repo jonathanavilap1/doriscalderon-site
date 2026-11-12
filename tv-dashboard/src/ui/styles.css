@@ -1,0 +1,13 @@
+:root { --brand-accent: #ff6b00; --brand-secondary: #111; color-scheme: dark; }
+body { margin: 0; background: var(--brand-secondary); color: #fff; font-family: system-ui, sans-serif; }
+.fatal { margin: 20vh auto; text-align: center; font-size: 2rem; }
+.dash header { display: flex; gap: 2rem; align-items: center; padding: 1rem 2rem; border-bottom: 4px solid var(--brand-accent); }
+.dash header img { height: 64px; }
+.pin { margin-left: auto; font-size: 3rem; font-weight: 800; color: var(--brand-accent); letter-spacing: .2em; }
+.conn { font-size: .9rem; opacity: .7; }
+.podium { display: flex; gap: 2rem; list-style: none; padding: 1rem 2rem; margin: 0; font-size: 1.6rem; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; padding: 1rem 2rem; }
+.tile { border-radius: 16px; padding: 1rem; display: flex; flex-direction: column; color: #000; transition: background-color .4s; }
+.tile strong { font-size: 3.4rem; line-height: 1; }
+.tile.stale { opacity: .45; }
+.tile .name { font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }

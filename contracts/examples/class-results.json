@@ -1,0 +1,20 @@
+{
+  "class_id": "5b1f3c8e-7a2d-4c61-9b0e-0f6a2d1c4e77",
+  "club_id": "iron-house",
+  "workout_type": "hyrox",
+  "generated_at": "2026-11-14T13:02:00Z",
+  "podium": [{ "rank": 1, "athlete_id": "0d5c9e1a-3f4b-4d8a-8a52-6c1f7b9e2a10", "points": 142 }],
+  "athletes": [
+    {
+      "athlete_id": "0d5c9e1a-3f4b-4d8a-8a52-6c1f7b9e2a10",
+      "avg_bpm": 151,
+      "peak_bpm": 184,
+      "points": 142,
+      "minutes_in_zone": { "gray": 2, "blue": 6, "green": 20, "orange": 22, "red": 10 }
+    }
+  ],
+  "awards": [
+    { "award": "podium_gold", "athlete_id": "0d5c9e1a-3f4b-4d8a-8a52-6c1f7b9e2a10" },
+    { "award": "redline_warrior", "athlete_id": "0d5c9e1a-3f4b-4d8a-8a52-6c1f7b9e2a10" }
+  ]
+}

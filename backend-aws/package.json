@@ -1,0 +1,35 @@
+{
+  "name": "@lmclub/backend-aws",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc --noEmit",
+    "test": "vitest run",
+    "synth": "cdk synth",
+    "diff": "cdk diff",
+    "deploy": "cdk deploy"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.1167.0",
+    "@aws-sdk/client-eventbridge": "^3.1167.0",
+    "@aws-sdk/client-iot-data-plane": "^3.1167.0",
+    "@aws-sdk/client-secrets-manager": "^3.1167.0",
+    "@aws-sdk/client-timestream-query": "^3.1167.0",
+    "@aws-sdk/client-timestream-write": "^3.1167.0",
+    "@aws-sdk/lib-dynamodb": "^3.1167.0",
+    "@lmclub/contracts": "file:../contracts",
+    "aws-cdk-lib": "^2.276.0",
+    "constructs": "^10.8.1"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.164",
+    "@types/node": "^26.6.6",
+    "aws-cdk": "^2.1148.1",
+    "aws-sdk-client-mock": "^4.1.0",
+    "esbuild": "^0.28.2",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vitest": "^4.1.12"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "branding.schema.json",
+  "title": "Branding",
+  "description": "White-label club branding injected into the TV dashboard.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "club_name",
+    "logo_url",
+    "accent_color"
+  ],
+  "properties": {
+    "club_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 60
+    },
+    "logo_url": {
+      "type": "string",
+      "pattern": "^https://[^\\s\"'()<>]+$",
+      "maxLength": 512,
+      "description": "HTTPS only; consumers must not inline it into CSS without escaping."
+    },
+    "accent_color": {
+      "type": "string",
+      "pattern": "^#[0-9A-Fa-f]{6}$"
+    },
+    "secondary_color": {
+      "type": "string",
+      "pattern": "^#[0-9A-Fa-f]{6}$"
+    }
+  }
+}

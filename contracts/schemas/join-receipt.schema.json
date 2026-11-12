@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "join-receipt.schema.json",
+  "title": "JoinReceipt",
+  "description": "Response to POST /join. Hands the athlete device its pseudonymous identity and a short-lived, topic-scoped realtime token (verified by the IoT custom authorizer).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["v", "identity", "session", "token", "token_expires_at", "topics"],
+  "properties": {
+    "v": { "const": 1 },
+    "identity": { "$ref": "athlete-identity.schema.json" },
+    "session": { "$ref": "class-session.schema.json" },
+    "token": { "type": "string", "description": "HS256 JWT. Pass as MQTT password (native) or `token` query param (WebSocket)." },
+    "token_expires_at": { "type": "string", "format": "date-time" },
+    "topics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["publish", "control"],
+      "properties": {
+        "publish": { "type": "string", "description": "`{club_id}/{class_id}/{athlete_id}`" },
+        "control": { "type": "string", "description": "`{club_id}/{class_id}/_control/events`" }
+      }
+    }
+  }
+}

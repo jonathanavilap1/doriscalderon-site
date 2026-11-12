@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "athlete-identity.schema.json",
+  "title": "AthleteIdentity",
+  "description": "Identity-plane record for one athlete in one class. `athlete_id` is a class-scoped pseudonym minted by the backend at join time; it is the ONLY identifier that appears in telemetry. The account link (Apple/Google/email subject) is stored server-side and is deliberately absent from this contract.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["v", "athlete_id", "class_id", "auth_state", "auth_provider", "display_name", "display_name_override", "override_by", "override_at", "joined_at"],
+  "properties": {
+    "v": { "const": 1 },
+    "athlete_id": { "type": "string", "format": "uuid" },
+    "class_id": { "type": "string", "format": "uuid" },
+    "auth_state": { "enum": ["guest", "authenticated"] },
+    "auth_provider": { "enum": ["apple", "google", "email", null], "description": "Null for guests." },
+    "display_name": { "type": "string", "minLength": 1, "maxLength": 24, "description": "Name chosen by the athlete." },
+    "display_name_override": { "type": ["string", "null"], "minLength": 1, "maxLength": 24, "description": "Club Admin correction. Wins over display_name on the TV." },
+    "override_by": { "type": ["string", "null"], "description": "Opaque admin id that set the override." },
+    "override_at": { "type": ["string", "null"], "format": "date-time" },
+    "joined_at": { "type": "string", "format": "date-time" }
+  }
+}

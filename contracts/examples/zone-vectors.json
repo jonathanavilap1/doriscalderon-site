@@ -1,0 +1,12 @@
+[
+  { "effort_pct": 0, "zone": "gray" },
+  { "effort_pct": 59.9, "zone": "gray" },
+  { "effort_pct": 60, "zone": "blue" },
+  { "effort_pct": 69.99, "zone": "blue" },
+  { "effort_pct": 70, "zone": "green" },
+  { "effort_pct": 83.9, "zone": "green" },
+  { "effort_pct": 84, "zone": "orange" },
+  { "effort_pct": 91.9, "zone": "orange" },
+  { "effort_pct": 92, "zone": "red" },
+  { "effort_pct": 130, "zone": "red" }
+]

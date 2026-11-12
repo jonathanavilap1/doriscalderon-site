@@ -1,0 +1,10 @@
+{
+  "description": "Single source of truth for effort zones. Zone = highest entry whose min_pct <= effort_pct. Swift, TypeScript and the Lambda all derive from this; cross-language vectors live in examples/zone-vectors.json.",
+  "zones": [
+    { "name": "gray", "min_pct": 0, "color": "#8E8E93", "points_per_minute": 0 },
+    { "name": "blue", "min_pct": 60, "color": "#0A84FF", "points_per_minute": 1 },
+    { "name": "green", "min_pct": 70, "color": "#30D158", "points_per_minute": 2 },
+    { "name": "orange", "min_pct": 84, "color": "#FF9F0A", "points_per_minute": 3 },
+    { "name": "red", "min_pct": 92, "color": "#FF453A", "points_per_minute": 4 }
+  ]
+}

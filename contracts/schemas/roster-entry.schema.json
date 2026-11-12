@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "roster-entry.schema.json",
+  "title": "RosterEntry",
+  "description": "Presentation-layer projection of AthleteIdentity: the UUID -> name resolution the TV uses. `display_name` is already the effective name (admin override applied).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["athlete_id", "display_name", "auth_state", "overridden"],
+  "properties": {
+    "athlete_id": { "type": "string", "format": "uuid" },
+    "display_name": { "type": "string", "minLength": 1, "maxLength": 24 },
+    "auth_state": { "enum": ["guest", "authenticated"] },
+    "overridden": { "type": "boolean" }
+  }
+}

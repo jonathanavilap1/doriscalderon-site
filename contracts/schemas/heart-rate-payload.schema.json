@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "heart-rate-payload.schema.json",
+  "title": "HeartRatePayload",
+  "description": "Telemetry frame published by an athlete device to `{club_id}/{class_id}/{athlete_id}`. Contains NO PII: identity is carried only by the topic's pseudonymous athlete UUID, and age/max-HR never leave the device (only the derived `effort_pct` does).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["v", "bpm", "effort_pct", "ts", "seq", "source"],
+  "properties": {
+    "v": { "const": 1, "description": "Contract version." },
+    "bpm": { "type": "integer", "minimum": 30, "maximum": 240, "description": "Instantaneous heart rate in beats per minute." },
+    "effort_pct": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 150,
+      "description": "bpm as a percentage of the athlete's max heart rate, computed ON DEVICE so max HR / age is never transmitted."
+    },
+    "ts": { "type": "integer", "minimum": 0, "description": "Device capture time, epoch milliseconds. Informational (latency); storage uses the broker's arrival time because device clocks are untrusted." },
+    "seq": { "type": "integer", "minimum": 0, "description": "Monotonic per-connection sequence number; lets consumers drop reordered frames." },
+    "source": { "enum": ["apple_watch", "ble_strap"], "description": "Sensor origin." }
+  }
+}
